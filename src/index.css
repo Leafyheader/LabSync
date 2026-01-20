@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Print Styles - Optimized for thermal receipt printers */
+@media print {
+  /* Hide sidebar and other non-receipt elements */
+  .print-hide, .no-print {
+    display: none !important;
+  }
+  
+  /* Show only the receipt content */
+  body * {
+    visibility: hidden;
+  }
+  
+  #receipt-content, #receipt-content * {
+    visibility: visible;
+  }
+  
+  #receipt-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  
+  /* Thermal receipt printer styles */
+  .print-receipt {
+    max-width: 80mm !important;
+    width: 80mm !important;
+    margin: 0 !important;
+    padding: 1mm 2mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    font-family: 'Arial', sans-serif !important;
+    color: black !important;
+    page-break-inside: avoid !important;
+  }
+  
+  /* Ensure grid layouts work in print */
+  .print-receipt .grid {
+    display: grid !important;
+  }
+  
+  .print-receipt .grid-cols-2 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  
+  .print-receipt .grid-cols-3 {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+}

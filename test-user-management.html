@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test UserManagement Component</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .pass { background-color: #d4edda; color: #155724; }
+        .fail { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>UserManagement Component Test</h1>
+    
+    <div id="test-results">
+        <h2>Test Results:</h2>
+        <div class="test-result pass">✅ Frontend build successful</div>
+        <div class="test-result fail">❌ UserManagement showing blank screen</div>
+    </div>
+
+    <h2>Debugging Steps:</h2>
+    <ol>
+        <li>Check console logs when navigating to User Management</li>
+        <li>Verify user authentication and role</li>
+        <li>Check API endpoints availability</li>
+        <li>Test with mock data (added temporarily)</li>
+    </ol>
+
+    <h2>Expected Console Logs:</h2>
+    <pre>
+🔄 UserManagement component rendering...
+🔍 UserManagement: Component mounted
+👤 Current user: [user object]
+🚀 UserManagement: useEffect triggered, calling loadData
+🧪 Temporary test: Setting mock data after 2 seconds
+🧪 Setting mock users and stats
+    </pre>
+
+    <p><strong>Instructions:</strong></p>
+    <p>1. Launch MedLab application</p>
+    <p>2. Login with admin credentials</p>
+    <p>3. Navigate to User Management</p>
+    <p>4. Open DevTools and check console</p>
+    <p>5. Look for the debug messages above</p>
+
+</body>
+</html>

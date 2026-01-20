@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  name      String
+  role      Role     @default(STAFF)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model LabTest {
+  id          String   @id @default(cuid())
+  name        String
+  price       Decimal  @db.Decimal(10, 2)
+  category    String
+  description String?  @db.Text
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  selectedTests TransactionTest[]
+
+  @@map("lab_tests")
+}
+
+model Customer {
+  id           String   @id @default(cuid())
+  name         String
+  phone        String?
+  email        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  transactions Transaction[]
+
+  @@map("customers")
+}
+
+model Transaction {
+  id              String            @id @default(cuid())
+  referenceNumber String            @unique
+  totalCost       Decimal           @db.Decimal(10, 2)
+  paymentMethod   PaymentMethod
+  status          TransactionStatus @default(PENDING)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  // Foreign Keys
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  // Relations
+  selectedTests TransactionTest[]
+
+  @@map("transactions")
+}
+
+model TransactionTest {
+  id       String @id @default(cuid())
+  quantity Int    @default(1)
+
+  // Foreign Keys
+  transactionId String
+  transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+
+  labTestId String
+  labTest   LabTest @relation(fields: [labTestId], references: [id], onDelete: Cascade)
+
+  @@unique([transactionId, labTestId])
+  @@map("transaction_tests")
+}
+
+enum Role {
+  SUPERADMIN
+  ADMIN
+  STAFF
+}
+
+enum PaymentMethod {
+  CASH
+  MOMO
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
+model Activation {
+  id          String   @id @default(cuid())
+  code        String   @unique
+  status      ActivationStatus @default(OFF)
+  activateAt  DateTime? // Optional date when activation should trigger
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("activations")
+}
+
+enum ActivationStatus {
+  ON
+  OFF
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Apexlink - A comprehensive point of sale system for retail businesses" />
+    <meta name="theme-color" content="#3B82F6" />
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored === 'dark' || stored === 'light' ? stored : (prefersDark ? 'dark' : 'light');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) { /* no-op */ }
+      })();
+    </script>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Apexlink - Point of Sale System" />
+    <meta property="og:description" content="A comprehensive point of sale system for retail businesses" />
+    <meta property="og:image" content="/apexlink-logo-512.svg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:title" content="Apexlink - Point of Sale System" />
+    <meta property="twitter:description" content="A comprehensive point of sale system for retail businesses" />
+    <meta property="twitter:image" content="/apexlink-logo-512.svg" />
+    
+    <title>Apexlink - Point of Sale System</title>
+    <script type="module" crossorigin src="/assets/index-q_BE3s2g.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C-Cuwyq2.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

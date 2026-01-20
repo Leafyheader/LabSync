@@ -1,0 +1,90 @@
+===============================================
+MedLab Backend - Quick Start Guide
+===============================================
+
+REQUIREMENTS:
+- Windows 7 or later
+- Node.js 18+ (included in portable package)
+- MySQL 5.7+ running and accessible
+
+===============================================
+INSTALLATION (5 Minutes)
+===============================================
+
+1. Extract this folder to: C:\MedLab\backend
+
+2. Open Command Prompt as Administrator
+   (Right-click cmd.exe -> Run as Administrator)
+
+3. Navigate to the folder:
+   cd C:\MedLab\backend
+
+4. Install NSSM (first time only):
+   setup-nssm.bat
+
+5. Install the service:
+   install-service.bat
+
+6. Start the service:
+   service-manager.bat start
+
+7. Verify it's running:
+   service-manager.bat status
+
+===============================================
+IMPORTANT: Configure Database Connection
+===============================================
+
+Edit the .env file BEFORE installing the service:
+
+DATABASE_URL="mysql://root:root@<DATABASE_HOST>:3306/medlab"
+
+Replace <DATABASE_HOST> with your MySQL server IP or hostname.
+
+===============================================
+DAILY OPERATIONS
+===============================================
+
+Start:    service-manager.bat start
+Stop:     service-manager.bat stop
+Restart:  service-manager.bat restart
+Status:   service-manager.bat status
+View Logs: service-manager.bat logs
+
+Or use Windows Services (services.msc):
+- Search for "services.msc" in Windows Start Menu
+- Find "MedLab Backend Service"
+- Right-click for start/stop options
+
+===============================================
+TROUBLESHOOTING
+===============================================
+
+Service won't start?
+1. Check MySQL is running
+2. Verify DATABASE_URL in .env is correct
+3. View logs: service-manager.bat logs
+4. Ensure Node.js is installed: node --version
+
+Port 3001 already in use?
+1. Edit .env and change PORT=3002
+2. Restart: service-manager.bat restart
+
+Need to uninstall?
+1. Open Command Prompt as Administrator
+2. Run: nssm\nssm.exe remove MedLabBackend confirm
+
+===============================================
+SUPPORT FILES
+===============================================
+
+- SERVICE_SETUP_GUIDE.md     (Detailed setup guide)
+- install-service.bat         (Install as Windows service)
+- service-manager.bat         (Manage the service)
+- setup-nssm.bat             (Download NSSM)
+- nssm\                      (NSSM service manager)
+- logs\                      (Service logs location)
+
+===============================================
+For more help, see SERVICE_SETUP_GUIDE.md
+===============================================
